@@ -13,7 +13,7 @@ class TicTac
 	  char[] CreateBoard=t.CreateBoard();
 	  t.Displayboard();
 	  t.CheckInput();
-	  t.Displayboard();
+	  t.play();
 
    	}
 	public char[] CreateBoard()
@@ -29,25 +29,25 @@ class TicTac
 	public void Displayboard()
 	{
 
-			System.out.println("________||____________||__________");
-			System.out.println(board[0]+""+board[1]+""+board[2]);
-			System.out.println("________||____________||__________");
-                        System.out.println(board[3]+""+board[4]+""+board[5]);
-			System.out.println("________||____________||__________");
-                        System.out.println(board[6]+""+board[7]+""+board[8]);
+			System.out.println("_||_||_");
+			System.out.println(board[0]+"  "+board[1]+"   "+board[2]);
+			System.out.println("_||_||_");
+                        System.out.println(board[3]+"  "+board[4]+"  "+board[5]);
+			System.out.println("_||_||_");
+                        System.out.println(board[6]+"  "+board[7]+"  "+board[8]);
 
 	}
 
 	public void  CheckInput()
 	{
-		System.out.println("USER INPUT A CHARACTER \n 1.'x' 2.'o' ");
+		System.out.println("USER INPUT A CHARACTER \n 'x' OR 'o' ");
 		char choice=sc.next().toUpperCase().charAt(0);
 		switch(choice)
 		{
 		case 'X':
 	        	System.out.println("User chose x so opponent will take o");
 		        User='X';
-			board[1]=User;
+			//board[1]=User;
 			Opponent='O';
 			break;
 		case 'O':
@@ -60,6 +60,28 @@ class TicTac
 			CheckInput();
 		}
 
+	}
+
+	public void play()
+
+	{
+	    System.out.println("HEY USER CHOOSE A POSITION from 1-9");
+	    int choice=sc.nextInt();
+	    if(choice<9)
+	    {
+	          if(board[choice]==' ')
+	          {
+		    board[choice]=User;
+		    Displayboard();
+		  }
+	          else
+		    System.out.println("WRONG MOVE");
+	            System.out.println("TRY ANOTHER POSITION");
+                    play();
+
+	    }
+	else
+		System.out.println("WRONG INPUT,GAME BOARD HAS ONLY 9 CELLS");
 	}
 
 }
